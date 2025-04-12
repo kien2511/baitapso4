@@ -1,0 +1,9 @@
+﻿SELECT * FROM [dbo].[INPORTDATA]
+DECLARE @from DATETIME = '2025-04-24 09:20:00';
+DECLARE @to DATETIME = '2025-04-24 12:00:00';
+
+SELECT HoTen, [Tên Môn], [Giờ vào], [Giờ ra], Ngày
+FROM [dbo].[INPORTDATA]
+WHERE 
+    DATEADD(SECOND, 0, CAST([Ngày] AS DATETIME) + CAST([Giờ vào] AS DATETIME)) < @to
+    AND DATEADD(SECOND, 0, CAST([Ngày] AS DATETIME) + CAST([Giờ ra] AS DATETIME)) > @from;
